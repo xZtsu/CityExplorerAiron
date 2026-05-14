@@ -1,0 +1,64 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CityExplorerAiron.ViewModels"
+             xmlns:models="clr-namespace:CityExplorerAiron.Models"
+             x:Class="CityExplorerAiron.Views.ExplorePage"
+             x:DataType="viewModels:ExploreViewModel"
+             >
+    
+
+
+    <Grid ColumnDefinitions="*, 70">
+
+        <VerticalStackLayout Grid.Column="0" VerticalOptions="Center">
+            <CarouselView ItemsSource="{Binding VisibleLandmarks}" 
+                          IndicatorView="indicatorView" 
+                          HeightRequest="410">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Landmark">
+                        <Frame Margin="20" CornerRadius="20" HasShadow="True">
+                            <VerticalStackLayout Spacing="10">
+                              
+                                <Image Source="{Binding ImageUrl}" 
+                                       HeightRequest="200" 
+                                       Aspect="AspectFill"/>
+    
+                                <Label Text="{Binding Name}" 
+                                       FontSize="24" 
+                                       FontAttributes="Bold"
+                                       TextColor="Black"/>
+
+                                <!--Kirjelduse Label -->
+                                <Label Text="{Binding Description}" 
+                                       FontSize="14" 
+                                       TextColor="Gray"
+                                       MaxLines="3" 
+                                       LineBreakMode="TailTruncation" />
+                                
+                                <Button Text="Lisa lemmikuks" 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreViewModel}}, Path=AddToFavoritesCommand}"
+                                        CommandParameter="{Binding .}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView" HorizontalOptions="Center" Margin="0,10"/>
+        </VerticalStackLayout>
+
+        <!-- Emoji Menüü -->
+        <CollectionView Grid.Column="1" ItemsSource="{Binding Categories}" BackgroundColor="#F0F0F0">
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate x:DataType="models:Category">
+                    <Button Text="{Binding Emoji}" 
+                    TextColor="Black"
+                    FontSize="30"
+                    BackgroundColor="Transparent"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ExploreViewModel}}, Path=FilterCommand}"
+                    CommandParameter="{Binding Emoji}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

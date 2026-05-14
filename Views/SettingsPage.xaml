@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CityExplorerAiron.ViewModels"
+             x:Class="CityExplorerAiron.Views.SettingsPage"
+             x:DataType="viewModels:SettingsViewModel">
+
+
+    <ContentPage.BindingContext>
+        <viewModels:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
+        <Label Text="Vali keel / Choose language" FontSize="20" HorizontalOptions="Center" />
+
+        <Button Text="Eesti" 
+                Command="{Binding ChangeLanguageCommand}" 
+                CommandParameter="et" />
+        <Button Text="English" 
+                Command="{Binding ChangeLanguageCommand}" 
+                CommandParameter="en" />
+        <Button Text="Русский" 
+                Command="{Binding ChangeLanguageCommand}" 
+                CommandParameter="ru" />
+    </VerticalStackLayout>
+</ContentPage>

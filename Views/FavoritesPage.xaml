@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CityExplorerAiron.ViewModels"
+             xmlns:models="clr-namespace:CityExplorerAiron.Models"
+             x:Class="CityExplorerAiron.Views.FavoritesPage"
+             x:DataType="viewModels:FavoritesViewModel"
+             x:Name="FavoritesPageRef" 
+             Title="Lemmikud">
+
+
+    <VerticalStackLayout Padding="20">
+        <Label Text="{Binding FavoritesHeaderText}" 
+       FontSize="28" 
+       FontAttributes="Bold" 
+       Margin="0,0,0,20"/>
+
+        <CollectionView ItemsSource="{Binding FavoriteLandmarks}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Landmark">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                               
+                                <SwipeItem Text="Kustuta"
+                                           BackgroundColor="Tomato"
+                                           Command="{Binding BindingContext.DeleteFavoriteCommand, 
+                                                     Source={x:Reference FavoritesPageRef}}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Grid Padding="15" ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
+                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding CategoryEmoji}" FontSize="20" Margin="0,0,10,0" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Description}" 
+                                   FontSize="13" TextColor="Gray" MaxLines="1" />
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label Text="Sa pole veel ühtegi lemmikut lisanud!" 
+                       HorizontalOptions="Center" Margin="0,50,0,0" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
