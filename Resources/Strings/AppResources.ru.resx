@@ -120,6 +120,9 @@
   <data name="ExploreTitle" xml:space="preserve">
     <value>Откройте для себя направление Таллинн</value>
   </data>
+  <data name="FavoriteEmpty" xml:space="preserve">
+    <value>Вы ещё не добавили ни одного в избранное!</value>
+  </data>
   <data name="FavoritesHeader" xml:space="preserve">
     <value>Мои избранные</value>
   </data>

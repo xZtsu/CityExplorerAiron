@@ -11,9 +11,12 @@ public class DatabaseService
     {
         if (_db is not null) return;
         var path = Path.Combine(FileSystem.AppDataDirectory, "CityExplorer.db3");
+        System.Diagnostics.Debug.WriteLine($"DATABASE PATH: {path}");
         _db = new SQLiteAsyncConnection(path);
         await _db.CreateTableAsync<Landmark>();
+        
     }
+
 
     public async Task<List<Landmark>> GetFavoritesAsync()
     {

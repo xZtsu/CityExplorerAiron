@@ -70,6 +70,15 @@ namespace CityExplorerAiron.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sa pole veel ühtegi lemmikut lisanud!.
+        /// </summary>
+        public static string FavoriteEmpty {
+            get {
+                return ResourceManager.GetString("FavoriteEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minu Lemmikud.
         /// </summary>
         public static string FavoritesHeader {

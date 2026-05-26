@@ -14,6 +14,7 @@ public class FavoritesViewModel : BaseViewModel
 
 
     public string FavoritesHeaderText => AppResources.FavoriteTitle;
+    public string FavoriteEmpty => AppResources.FavoriteEmpty;
 
     public ICommand LoadFavoritesCommand { get; }
     public ICommand DeleteFavoriteCommand { get; }

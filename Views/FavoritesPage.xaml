@@ -8,41 +8,64 @@
              x:Name="FavoritesPageRef" 
              Title="Lemmikud">
 
-
     <VerticalStackLayout Padding="20">
         <Label Text="{Binding FavoritesHeaderText}" 
-       FontSize="28" 
-       FontAttributes="Bold" 
-       Margin="0,0,0,20"/>
+               FontSize="28" 
+               FontAttributes="Bold" 
+               Margin="0,0,0,20"/>
 
         <CollectionView ItemsSource="{Binding FavoriteLandmarks}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Landmark">
-                    <SwipeView>
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                               
-                                <SwipeItem Text="Kustuta"
-                                           BackgroundColor="Tomato"
-                                           Command="{Binding BindingContext.DeleteFavoriteCommand, 
-                                                     Source={x:Reference FavoritesPageRef}}"
-                                           CommandParameter="{Binding .}" />
-                            </SwipeItems>
-                        </SwipeView.RightItems>
+                    <!-- Column 0: Emoji (Auto width) -->
+                    <!-- Column 1: Text details (Takes remaining space *) -->
+                    <!-- Column 2: Static Delete Button (Auto width) -->
+                    <Grid Padding="15" ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto">
 
-                        <Grid Padding="15" ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding CategoryEmoji}" FontSize="20" Margin="0,0,10,0" />
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="18" FontAttributes="Bold" />
-                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Description}" 
-                                   FontSize="13" TextColor="Gray" MaxLines="1" />
-                        </Grid>
-                    </SwipeView>
+                        <!-- Category Emoji -->
+                        <Label Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.RowSpan="2"
+                               VerticalOptions="Center"
+                               Text="{Binding CategoryEmoji}" 
+                               FontSize="20" 
+                               Margin="0,0,10,0" />
+
+                        <!-- Name -->
+                        <Label Grid.Row="0" 
+                               Grid.Column="1" 
+                               Text="{Binding Name}" 
+                               FontSize="18" 
+                               FontAttributes="Bold" />
+
+                        <!-- Description -->
+                        <Label Grid.Row="1" 
+                               Grid.Column="1" 
+                               Text="{Binding Description}" 
+                               FontSize="13" 
+                               TextColor="Gray" 
+                               MaxLines="1" />
+
+                        <!-- Static Kustuta Button -->
+                        <Button Grid.Row="0" 
+                                Grid.Column="2" 
+                                Grid.RowSpan="2"
+                                Text="Kustuta"
+                                BackgroundColor="Tomato"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                HorizontalOptions="End"
+                                Margin="10,0,0,0"
+                                Command="{Binding BindingContext.DeleteFavoriteCommand, Source={x:Reference FavoritesPageRef}}"
+                                CommandParameter="{Binding .}" />
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
             <CollectionView.EmptyView>
-                <Label Text="Sa pole veel ühtegi lemmikut lisanud!" 
-                       HorizontalOptions="Center" Margin="0,50,0,0" />
+                <Label Text="{Binding FavoriteEmpty}"
+                       HorizontalOptions="Center" 
+                       Margin="0,50,0,0" />
             </CollectionView.EmptyView>
         </CollectionView>
     </VerticalStackLayout>

@@ -120,6 +120,9 @@
   <data name="ExploreTitle" xml:space="preserve">
     <value>Explore Tallinn</value>
   </data>
+  <data name="FavoriteEmpty" xml:space="preserve">
+    <value>You haven't added any favorites yet!</value>
+  </data>
   <data name="FavoritesHeader" xml:space="preserve">
     <value>My Favorites</value>
   </data>

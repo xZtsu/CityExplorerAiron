@@ -120,6 +120,9 @@
   <data name="ExploreTitle" xml:space="preserve">
     <value>Avasta Tallinnat</value>
   </data>
+  <data name="FavoriteEmpty" xml:space="preserve">
+    <value>Sa pole veel ühtegi lemmikut lisanud!</value>
+  </data>
   <data name="FavoritesHeader" xml:space="preserve">
     <value>Minu Lemmikud</value>
   </data>
